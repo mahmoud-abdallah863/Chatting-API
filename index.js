@@ -11,9 +11,6 @@ app.get('/', (req, res) => {
     res.send('char server is running on port 3000')
 })
 
-server.listen(3000, () => {
-    console.log('Node app is running on port 3000')
-})
 
 
 io.on('connection', (socket) => {
@@ -37,4 +34,9 @@ io.on('connection', (socket) => {
 
         socket.broadcast.emit(UserDisconnected, 'user has left')
     })
+})
+
+const port = process.env.PORT
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
 })
