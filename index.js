@@ -1,14 +1,14 @@
-const express = require('express'),
-http = require('http'),
-app = express(),
-server = http.createServer(app),
-io = require('socket.io').listen(server);
+const express = require('express')
+const http = require('http')
+const app = express()
+const server = http.createServer(app)
+const io = require('socket.io').listen(server);
 
 const { Join, UserJoinTheChat, MessageDetection, Message,
     Disconnected, UserDisconnected} = require('./Events')
 
 app.get('/', (req, res) => {
-    res.send('char server is running on port 3000')
+    res.send('Up and running')
 })
 
 
@@ -37,6 +37,6 @@ io.on('connection', (socket) => {
 })
 
 const port = process.env.PORT
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
